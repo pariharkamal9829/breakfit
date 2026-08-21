@@ -1,0 +1,449 @@
+/* ============================================================
+   BreakFit — css/components/header.css
+   Shared navigation bar styles
+   Requirements: 1.7, 7.2
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. SITE HEADER — sticky bar with backdrop blur
+   ------------------------------------------------------------ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  background: var(--color-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
+  transition: box-shadow var(--transition-base);
+}
+
+/* Scrolled state — added via JS when window.scrollY > 0 */
+.site-header.header--scrolled {
+  box-shadow: var(--shadow-md);
+}
+
+/* Inner flex container — logo | nav | actions */
+.header-inner {
+  display: flex;
+  align-items: center;
+  height: var(--header-height);          /* 70px (desktop) */
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
+  gap: var(--space-lg);
+}
+
+/* ------------------------------------------------------------
+   2. LOGO — left section
+   ------------------------------------------------------------ */
+.site-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logo-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.logo-name {
+  font-family: var(--font-heading);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: -0.02em;
+}
+
+.logo-tagline {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* ------------------------------------------------------------
+   3. PRIMARY NAV — centered desktop links
+   ------------------------------------------------------------ */
+.nav-primary {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  position: relative;
+}
+
+/* Each nav link */
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.5rem 0.875rem;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--color-text-primary);
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color var(--transition-fast), background var(--transition-fast);
+  white-space: nowrap;
+}
+
+/* Hover state */
+.nav-link:hover {
+  color: var(--color-primary);
+  background: var(--color-bg-alt, #F5EDE3);
+}
+
+/* Active page indicator — bottom border underline */
+.nav-link.active {
+  color: var(--color-primary);
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0.875rem;
+  right: 0.875rem;
+  height: 2px;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+}
+
+/* ------------------------------------------------------------
+   4. HEADER ACTIONS — right section (search, wishlist, cart)
+   ------------------------------------------------------------ */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-shrink: 0;
+}
+
+/* Generic icon action button */
+.action-btn {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  min-width: 44px;     /* WCAG 2.1 AA touch target */
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  font-size: 1.25rem;
+  transition: background var(--transition-fast), color var(--transition-fast);
+  text-decoration: none;
+}
+
+.action-btn:hover {
+  background: var(--color-bg-alt, #F5EDE3);
+  color: var(--color-primary);
+}
+
+/* ------------------------------------------------------------
+   5. CART BADGE — small circle top-right of cart icon
+   ------------------------------------------------------------ */
+.cart-badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 18px;
+  height: 18px;
+  background: var(--color-secondary);
+  color: #fff;
+  border-radius: var(--radius-full);
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  pointer-events: none;
+  transition: transform var(--transition-spring);
+}
+
+/* Bounce animation when count updates */
+.cart-badge.bump {
+  animation: badge-bump 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes badge-bump {
+  0%   { transform: scale(1); }
+  50%  { transform: scale(1.5); }
+  100% { transform: scale(1); }
+}
+
+/* ------------------------------------------------------------
+   6. HAMBURGER ICON — 3 bars, desktop hidden, mobile visible
+   ------------------------------------------------------------ */
+.menu-toggle {
+  display: none;               /* hidden on desktop ≥ 768px */
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-primary);
+  flex-shrink: 0;
+  transition: background var(--transition-fast);
+}
+
+.menu-toggle:hover {
+  background: var(--color-bg-alt, #F5EDE3);
+  color: var(--color-primary);
+}
+
+/* Three-bar SVG / icon inside the toggle */
+.hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-fast);
+}
+
+.hamburger-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* When nav-open: morph to × */
+body.nav-open .hamburger-bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+body.nav-open .hamburger-bar:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+body.nav-open .hamburger-bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ------------------------------------------------------------
+   7. MOBILE NAV DRAWER — slides in from the left
+   ------------------------------------------------------------ */
+
+/* Backdrop overlay */
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 18, 8, 0.5);
+  z-index: calc(var(--z-fixed) - 1);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-slow), visibility var(--transition-slow);
+}
+
+body.nav-open .nav-overlay {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Drawer panel */
+.nav-drawer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: min(320px, 85vw);
+  height: 100%;
+  background: var(--color-surface);
+  z-index: var(--z-fixed);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-xl);
+  overflow-y: auto;
+  /* Slide in/out via translateX */
+  transform: translateX(-100%);
+  transition: transform var(--transition-slow);
+}
+
+/* Open state — triggered by body.nav-open */
+body.nav-open .nav-drawer {
+  transform: translateX(0);
+}
+
+/* Drawer header row */
+.nav-drawer__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-lg) var(--space-lg) var(--space-md);
+  border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+/* Close button inside drawer */
+.nav-drawer__close {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: var(--color-bg-alt, #F5EDE3);
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: var(--color-text-primary);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.nav-drawer__close:hover {
+  background: var(--color-border);
+  color: var(--color-primary);
+}
+
+/* Drawer body / link list */
+.nav-drawer__body {
+  flex: 1;
+  padding: var(--space-md);
+  overflow-y: auto;
+}
+
+.nav-drawer__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Drawer nav links */
+.nav-drawer__link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: 0.875rem var(--space-md);
+  border-radius: var(--radius-lg);
+  font-weight: 600;
+  font-size: var(--text-base);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  min-height: 44px;    /* touch target */
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.nav-drawer__link:hover,
+.nav-drawer__link.active {
+  background: var(--color-bg-alt, #F5EDE3);
+  color: var(--color-primary);
+}
+
+.nav-drawer__link i {
+  font-size: 1.1rem;
+  width: 24px;
+  text-align: center;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+/* Divider between link groups */
+.nav-drawer__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: var(--space-sm) 0;
+}
+
+/* Drawer footer */
+.nav-drawer__footer {
+  padding: var(--space-lg);
+  border-top: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* Prevent body scroll when drawer is open */
+body.nav-open {
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------
+   8. RESPONSIVE BREAKPOINTS
+   ------------------------------------------------------------ */
+
+/* Tablet / below 1024px — hide desktop nav, show hamburger */
+@media (max-width: 1024px) {
+  .nav-primary {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .header-inner {
+    height: var(--header-height-mobile);   /* 60px */
+  }
+}
+
+/* Mobile — below 768px (core mobile breakpoint per Req 7.2) */
+@media (max-width: 768px) {
+  .nav-primary {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .header-inner {
+    height: var(--header-height-mobile);
+    padding: 0 var(--space-md);
+  }
+
+  /* Hide extra action buttons; keep cart + search */
+  .header-actions .action-btn:not(.action-btn--cart):not(.action-btn--search) {
+    display: none;
+  }
+}
+
+/* Narrow phones — below 480px */
+@media (max-width: 480px) {
+  .logo-tagline {
+    display: none;
+  }
+}

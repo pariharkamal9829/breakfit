@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout — BreakFit Premium Dry Fruits</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/header.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/whatsapp.css">
+  <link rel="stylesheet" href="css/pages/checkout.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="toast-container"></div>
+
+  <main>
+    <div class="container checkout-wrapper">
+
+      <!-- Step Indicator -->
+      <div class="step-indicator" id="step-indicator">
+        <div class="step step--active" data-step="1">
+          <div class="step__circle"><span>1</span><i class="ri-check-line"></i></div>
+          <span class="step__label">Shipping</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="2">
+          <div class="step__circle"><span>2</span><i class="ri-check-line"></i></div>
+          <span class="step__label">Payment</span>
+        </div>
+        <div class="step-line"></div>
+        <div class="step" data-step="3">
+          <div class="step__circle"><span>3</span><i class="ri-check-line"></i></div>
+          <span class="step__label">Confirm</span>
+        </div>
+      </div>
+
+      <div class="checkout-grid">
+        <!-- Form Column -->
+        <div class="checkout-form-col">
+
+          <!-- Step 1: Shipping -->
+          <div class="checkout-step" id="checkout-step-1">
+            <h2>Shipping Details</h2>
+            <form id="shipping-form" novalidate>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="firstName">First Name *</label>
+                  <input type="text" id="firstName" name="firstName" class="form-control" placeholder="Rahul" autocomplete="given-name">
+                  <span class="form-error" id="err-firstName"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="lastName">Last Name *</label>
+                  <input type="text" id="lastName" name="lastName" class="form-control" placeholder="Sharma" autocomplete="family-name">
+                  <span class="form-error" id="err-lastName"></span>
+                </div>
+              </div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label class="form-label" for="email">Email *</label>
+                  <input type="email" id="email" name="email" class="form-control" placeholder="rahul@email.com" autocomplete="email">
+                  <span class="form-error" id="err-email"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="phone">Mobile Number *</label>
+                  <input type="tel" id="phone" name="phone" class="form-control" placeholder="9876543210" autocomplete="tel">
+                  <span class="form-error" id="err-phone"></span>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="address1">Address Line 1 *</label>
+                <input type="text" id="address1" name="address1" class="form-control" placeholder="Flat / House No, Street" autocomplete="address-line1">
+                <span class="form-error" id="err-address1"></span>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="address2">Address Line 2</label>
+                <input type="text" id="address2" name="address2" class="form-control" placeholder="Area, Landmark (optional)" autocomplete="address-line2">
+              </div>
+              <div class="form-grid form-grid-3">
+                <div class="form-group">
+                  <label class="form-label" for="city">City *</label>
+                  <input type="text" id="city" name="city" class="form-control" placeholder="Mumbai" autocomplete="address-level2">
+                  <span class="form-error" id="err-city"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="state">State *</label>
+                  <select id="state" name="state" class="form-control" autocomplete="address-level1">
+                    <option value="">Select State</option>
+                    <option>Maharashtra</option><option>Delhi</option><option>Karnataka</option>
+                    <option>Tamil Nadu</option><option>Gujarat</option><option>Rajasthan</option>
+                    <option>Uttar Pradesh</option><option>West Bengal</option><option>Telangana</option>
+                    <option>Andhra Pradesh</option><option>Kerala</option><option>Punjab</option>
+                    <option>Haryana</option><option>Madhya Pradesh</option><option>Bihar</option>
+                    <option>Other</option>
+                  </select>
+                  <span class="form-error" id="err-state"></span>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="pincode">Pincode *</label>
+                  <input type="text" id="pincode" name="pincode" class="form-control" placeholder="400001" maxlength="6" autocomplete="postal-code">
+                  <span class="form-error" id="err-pincode"></span>
+                </div>
+              </div>
+              <button type="button" class="btn btn--primary btn-lg" id="step1-continue-btn" style="width:100%">
+                Continue to Payment <i class="ri-arrow-right-line"></i>
+              </button>
+            </form>
+          </div>
+
+          <!-- Step 2: Payment -->
+          <div class="checkout-step" id="checkout-step-2" style="display:none">
+            <h2>Payment Method</h2>
+            <div class="payment-options" id="payment-options">
+              <label class="payment-option">
+                <input type="radio" name="payment" value="upi"> 
+                <div class="payment-option__body"><i class="ri-qr-code-line"></i><span>UPI / QR Code</span></div>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" value="card">
+                <div class="payment-option__body"><i class="ri-bank-card-line"></i><span>Credit / Debit Card</span></div>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" value="netbanking">
+                <div class="payment-option__body"><i class="ri-building-line"></i><span>Net Banking</span></div>
+              </label>
+              <label class="payment-option">
+                <input type="radio" name="payment" value="cod">
+                <div class="payment-option__body"><i class="ri-money-rupee-circle-line"></i><span>Cash on Delivery</span></div>
+              </label>
+            </div>
+            <p class="form-error" id="err-payment" style="display:none">Please select a payment method.</p>
+            <div class="step2-btns">
+              <button type="button" class="btn btn-outline" id="step2-back-btn"><i class="ri-arrow-left-line"></i> Back</button>
+              <button type="button" class="btn btn--primary btn-lg" id="step2-continue-btn">Review Order <i class="ri-arrow-right-line"></i></button>
+            </div>
+          </div>
+
+          <!-- Step 3: Confirmation -->
+          <div class="checkout-step" id="checkout-step-3" style="display:none">
+            <h2>Review &amp; Place Order</h2>
+            <div class="order-review" id="order-review"></div>
+            <div class="step3-btns">
+              <button type="button" class="btn btn-outline" id="step3-back-btn"><i class="ri-arrow-left-line"></i> Back</button>
+              <button type="button" class="btn btn--primary btn-lg" id="place-order-btn">
+                <i class="ri-shield-check-line"></i> Place Order
+              </button>
+            </div>
+          </div>
+
+          <!-- Order Confirmed -->
+          <div class="order-confirmed" id="order-confirmed" style="display:none">
+            <div class="confirmed-icon"><i class="ri-checkbox-circle-fill"></i></div>
+            <h2>Order Placed Successfully!</h2>
+            <p>Thank you for your order. We'll send you a confirmation on your email.</p>
+            <p class="order-id-display">Order ID: <strong id="confirmed-order-id"></strong></p>
+            <div id="confirmed-summary"></div>
+            <a href="index.html" class="btn btn--primary btn-lg" style="margin-top:var(--space-6)">Continue Shopping</a>
+          </div>
+
+        </div>
+
+        <!-- Order Summary Sidebar -->
+        <aside class="checkout-summary-col" id="checkout-summary-col">
+          <div class="order-summary">
+            <h3>Order Summary</h3>
+            <div id="checkout-cart-items"></div>
+            <div class="summary-lines">
+              <div class="summary-line"><span>Subtotal</span><span id="co-subtotal">₹0</span></div>
+              <div class="summary-line"><span>Shipping</span><span id="co-shipping">₹0</span></div>
+              <div class="summary-line summary-total"><span>Total</span><span id="co-total">₹0</span></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <script src="js/data/products.js"></script>
+  <script src="js/data/categories.js"></script>
+  <script src="js/utils/sanitize.js"></script>
+  <script src="js/utils/renderStars.js"></script>
+  <script src="js/utils/FormValidator.js"></script>
+  <script src="js/modules/CartStore.js"></script>
+  <script src="js/modules/ToastNotification.js"></script>
+  <script src="js/modules/WhatsAppWidget.js"></script>
+  <script src="js/modules/Header.js"></script>
+  <script src="js/modules/Footer.js"></script>
+  <script src="js/pages/checkout.js"></script>
+</body>
+</html>

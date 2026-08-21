@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BreakFit — Premium dry fruits and nuts. Fresh cashews, almonds, walnuts, raisins, dates and more, delivered to your door.">
+  <title>BreakFit — Premium Dry Fruits &amp; Nuts</title>
+
+  <!-- Preload first hero image -->
+  <link rel="preload" as="image" href="https://picsum.photos/seed/hero1/1400/700">
+
+  <!-- Remix Icons CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" crossorigin="anonymous">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/header.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/product-card.css">
+  <link rel="stylesheet" href="css/components/hero-slider.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/whatsapp.css">
+  <link rel="stylesheet" href="css/pages/home.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <div id="site-header"></div>
+
+  <!-- Toast container -->
+  <div id="toast-container"></div>
+
+  <main>
+
+    <!-- ── Hero Slider ── -->
+    <div id="hero-slider-container"></div>
+
+    <!-- ── Features Strip ── -->
+    <section class="features-strip">
+      <div class="container">
+        <div class="features-grid">
+          <div class="feature-item" data-animate>
+            <i class="ri-truck-line feature-icon"></i>
+            <div><strong>Free Shipping</strong><p>On orders over ₹999</p></div>
+          </div>
+          <div class="feature-item" data-animate data-delay="100">
+            <i class="ri-leaf-line feature-icon"></i>
+            <div><strong>100% Natural</strong><p>No preservatives</p></div>
+          </div>
+          <div class="feature-item" data-animate data-delay="200">
+            <i class="ri-shield-check-line feature-icon"></i>
+            <div><strong>Quality Assured</strong><p>Farm to door freshness</p></div>
+          </div>
+          <div class="feature-item" data-animate data-delay="300">
+            <i class="ri-refresh-line feature-icon"></i>
+            <div><strong>Easy Returns</strong><p>7-day return policy</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Category Cards ── -->
+    <section class="section section-categories">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <span class="section-label">Browse by Category</span>
+          <h2 class="section-title">Shop by Type</h2>
+          <p class="section-subtitle">From premium cashews to exotic dates — explore our full range of handpicked dry fruits.</p>
+        </div>
+        <div class="categories-grid" id="categories-grid"></div>
+      </div>
+    </section>
+
+    <!-- ── Featured Products ── -->
+    <section class="section section-featured" style="background:var(--color-bg-alt)">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <span class="section-label">Staff Picks</span>
+          <h2 class="section-title">Featured Products</h2>
+          <p class="section-subtitle">Our most-loved dry fruits, chosen for their outstanding quality and flavour.</p>
+        </div>
+        <div class="grid-4" id="featured-products"></div>
+        <div class="text-center" style="margin-top:var(--space-12)">
+          <a href="categories.html" class="btn btn--primary btn-lg" data-animate>View All Products</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Promo Banners ── -->
+    <section class="section section-promo">
+      <div class="container">
+        <div class="promo-grid">
+          <div class="promo-card promo-card--primary" data-animate>
+            <div class="promo-card__content">
+              <span class="section-label">Limited Offer</span>
+              <h3>Get 20% Off on Premium Cashews</h3>
+              <p>Use code <strong>BREAK20</strong> at checkout. Valid for first-time buyers.</p>
+              <a href="categories.html?category=cashews" class="btn btn--secondary">Shop Cashews</a>
+            </div>
+            <div class="promo-card__img">🥜</div>
+          </div>
+          <div class="promo-card promo-card--accent" data-animate data-delay="150">
+            <div class="promo-card__content">
+              <span class="section-label">New Arrival</span>
+              <h3>Authentic Mamra Almonds from Iran</h3>
+              <p>Sourced directly from premium Iranian farms. Limited stock available.</p>
+              <a href="categories.html?category=almonds" class="btn btn--primary">Shop Almonds</a>
+            </div>
+            <div class="promo-card__img">🌰</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Testimonials ── -->
+    <section class="section section-testimonials" style="background:var(--color-bg-alt)">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <span class="section-label">What Customers Say</span>
+          <h2 class="section-title">Loved by Thousands</h2>
+        </div>
+        <div class="testimonials-grid">
+          <div class="testimonial-card" data-animate>
+            <div class="testimonial-stars">★★★★★</div>
+            <blockquote>"The freshest cashews I've ever ordered online. You can taste the quality difference from the first bite."</blockquote>
+            <div class="testimonial-author">
+              <img src="https://picsum.photos/seed/tuser1/48/48" alt="Priya S." loading="lazy">
+              <div><strong>Priya S.</strong><span>Mumbai</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card" data-animate data-delay="150">
+            <div class="testimonial-stars">★★★★★</div>
+            <blockquote>"I've been buying my Mamra almonds from BreakFit for 6 months now. Genuinely authentic, unlike anything else online."</blockquote>
+            <div class="testimonial-author">
+              <img src="https://picsum.photos/seed/tuser2/48/48" alt="Rohit J." loading="lazy">
+              <div><strong>Rohit J.</strong><span>Bangalore</span></div>
+            </div>
+          </div>
+          <div class="testimonial-card" data-animate data-delay="300">
+            <div class="testimonial-stars">★★★★★</div>
+            <blockquote>"Fast delivery, beautiful packaging, and the mixed nuts blend is absolutely perfect for our office snack corner."</blockquote>
+            <div class="testimonial-author">
+              <img src="https://picsum.photos/seed/tuser3/48/48" alt="Anjali K." loading="lazy">
+              <div><strong>Anjali K.</strong><span>Delhi</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Newsletter ── -->
+    <section class="section section-newsletter">
+      <div class="container">
+        <div class="newsletter-box" data-animate>
+          <div class="newsletter-content">
+            <span class="section-label">Join Our Community</span>
+            <h2>Get 10% Off Your First Order</h2>
+            <p>Subscribe to our newsletter for exclusive deals, new arrivals, and healthy snacking tips.</p>
+          </div>
+          <form class="newsletter-form" id="home-newsletter-form" novalidate>
+            <input type="email" placeholder="Enter your email address" aria-label="Email address" required>
+            <button type="submit" class="btn btn--primary">Get 10% Off</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <div id="site-footer"></div>
+
+  <!-- JS: Data -->
+  <script src="js/data/products.js"></script>
+  <script src="js/data/categories.js"></script>
+  <script src="js/data/reviews.js"></script>
+
+  <!-- JS: Utilities -->
+  <script src="js/utils/sanitize.js"></script>
+  <script src="js/utils/renderStars.js"></script>
+  <script src="js/utils/filterProducts.js"></script>
+  <script src="js/utils/scrollAnimations.js"></script>
+
+  <!-- JS: Modules -->
+  <script src="js/modules/CartStore.js"></script>
+  <script src="js/modules/ToastNotification.js"></script>
+  <script src="js/modules/WhatsAppWidget.js"></script>
+  <script src="js/modules/Header.js"></script>
+  <script src="js/modules/Footer.js"></script>
+  <script src="js/modules/HeroSlider.js"></script>
+  <script src="js/modules/ProductCard.js"></script>
+
+  <!-- JS: Home page controller -->
+  <script src="js/pages/home.js"></script>
+
+</body>
+</html>

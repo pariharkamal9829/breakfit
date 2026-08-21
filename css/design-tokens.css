@@ -1,0 +1,122 @@
+/* BreakFit Design Tokens */
+:root {
+  /* Colors */
+  --color-primary: #8B5E3C;
+  --color-primary-dark: #6B4226;
+  --color-primary-light: #A87850;
+  --color-secondary: #D4A853;
+  --color-secondary-dark: #B8903A;
+  --color-accent: #4A7C59;
+  --color-accent-light: #5E9B6E;
+  --color-bg: #FDF8F3;
+  --color-bg-alt: #F5EDE3;
+  --color-surface: #FFFFFF;
+  --color-surface-raised: #FFF9F4;
+  --color-text-primary: #1A1208;
+  --color-text-secondary: #6B5C4E;
+  --color-text-muted: #9E8C7E;
+  --color-border: #E8DDD4;
+  --color-border-light: #F0E8DF;
+  --color-whatsapp: #25D366;
+  --color-error: #C0392B;
+  --color-success: #27AE60;
+  --color-warning: #E67E22;
+  --color-info: #2980B9;
+
+  /* Shadows */
+  --shadow-xs: 0 1px 3px rgba(139,94,60,0.08);
+  --shadow-sm: 0 2px 8px rgba(139,94,60,0.12);
+  --shadow-md: 0 4px 16px rgba(139,94,60,0.15);
+  --shadow-lg: 0 8px 32px rgba(139,94,60,0.18);
+  --shadow-xl: 0 16px 48px rgba(139,94,60,0.22);
+
+  /* Typography */
+  --font-heading: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Font Sizes */
+  --text-xs:   0.75rem;   /* 12px */
+  --text-sm:   0.875rem;  /* 14px */
+  --text-base: 1rem;      /* 16px */
+  --text-lg:   1.125rem;  /* 18px */
+  --text-xl:   1.25rem;   /* 20px */
+  --text-2xl:  1.5rem;    /* 24px */
+  --text-3xl:  1.875rem;  /* 30px */
+  --text-4xl:  2.25rem;   /* 36px */
+  --text-5xl:  3rem;      /* 48px */
+  --text-6xl:  3.75rem;   /* 60px */
+
+  /* Line Heights */
+  --leading-none:    1;
+  --leading-tight:   1.25;
+  --leading-snug:    1.375;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose:   2;
+
+  /* Spacing — named scale (xs → 2xl) */
+  --space-xs:  0.25rem;   /* 4px  */
+  --space-sm:  0.5rem;    /* 8px  */
+  --space-md:  1rem;      /* 16px */
+  --space-lg:  1.5rem;    /* 24px */
+  --space-xl:  2rem;      /* 32px */
+  --space-2xl: 3rem;      /* 48px */
+
+  /* Spacing — numeric aliases (kept for back-compat) */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.75rem;
+  --space-4:  1rem;
+  --space-5:  1.25rem;
+  --space-6:  1.5rem;
+  --space-8:  2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 400ms ease;
+  --transition-spring: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Z-index */
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 400;
+  --z-modal: 500;
+  --z-toast: 600;
+  --z-tooltip: 700;
+
+  /* Layout */
+  --container-max: 1280px;
+  --container-md: 960px;
+  --header-height: 70px;
+  --header-height-mobile: 60px;
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #1A1208;
+    --color-bg-alt: #231A0E;
+    --color-surface: #2A1E12;
+    --color-surface-raised: #332518;
+    --color-text-primary: #F5EDE3;
+    --color-text-secondary: #C9B8A8;
+    --color-text-muted: #8B7A6A;
+    --color-border: #3D2E1E;
+    --color-border-light: #4A3828;
+  }
+}

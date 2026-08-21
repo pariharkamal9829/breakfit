@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product — BreakFit Premium Dry Fruits</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/design-tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components/header.css">
+  <link rel="stylesheet" href="css/components/footer.css">
+  <link rel="stylesheet" href="css/components/product-card.css">
+  <link rel="stylesheet" href="css/components/toast.css">
+  <link rel="stylesheet" href="css/components/whatsapp.css">
+  <link rel="stylesheet" href="css/pages/product.css">
+</head>
+<body>
+  <div id="site-header"></div>
+  <div id="toast-container"></div>
+
+  <main>
+    <div class="container" style="padding-top:var(--space-4)">
+      <nav class="breadcrumb" id="product-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="sep"><i class="ri-arrow-right-s-line"></i></span>
+        <a href="categories.html">Shop</a>
+        <span class="sep"><i class="ri-arrow-right-s-line"></i></span>
+        <span class="current" id="breadcrumb-name">Product</span>
+      </nav>
+    </div>
+
+    <!-- Product Detail -->
+    <section class="section-sm">
+      <div class="container">
+        <div class="product-layout">
+          <!-- Gallery -->
+          <div class="product-gallery-col" id="product-gallery"></div>
+
+          <!-- Info -->
+          <div class="product-info-col">
+            <span class="product-badge-wrap" id="product-badge"></span>
+            <h1 class="product-title" id="product-title">Loading...</h1>
+
+            <div class="product-rating-row" id="product-rating"></div>
+
+            <div class="product-price-row">
+              <span class="price-current" id="product-price">₹0</span>
+              <span class="price-original" id="product-original-price"></span>
+              <span class="price-discount" id="product-discount"></span>
+            </div>
+
+            <p class="product-short-desc" id="product-short-desc"></p>
+
+            <div class="product-variants" id="product-variants">
+              <p class="variant-label">Size: <strong id="selected-variant-label"></strong></p>
+              <div class="variant-btns" id="variant-btns"></div>
+            </div>
+
+            <div class="product-qty-row">
+              <label class="form-label">Quantity</label>
+              <div id="qty-selector-container"></div>
+            </div>
+
+            <div class="product-actions">
+              <button class="btn btn--primary btn-lg product-atc-btn" id="add-to-cart-btn">
+                <i class="ri-shopping-cart-line"></i> Add to Cart
+              </button>
+              <button class="btn btn-outline btn-lg" id="wishlist-btn" aria-label="Add to wishlist">
+                <i class="ri-heart-line"></i>
+              </button>
+            </div>
+
+            <div class="product-meta" id="product-meta"></div>
+
+            <div class="product-trust">
+              <div class="trust-item"><i class="ri-truck-line"></i><span>Free shipping over ₹999</span></div>
+              <div class="trust-item"><i class="ri-shield-check-line"></i><span>100% authentic</span></div>
+              <div class="trust-item"><i class="ri-refresh-line"></i><span>7-day returns</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tabs: Description / Nutrition -->
+    <section class="section-sm" style="background:var(--color-bg-alt)">
+      <div class="container">
+        <div class="tabs" role="tablist">
+          <button class="tab-btn active" role="tab" data-tab="description">Description</button>
+          <button class="tab-btn" role="tab" data-tab="nutrition">Nutrition Facts</button>
+        </div>
+        <div class="tab-panel active" id="tab-description"></div>
+        <div class="tab-panel" id="tab-nutrition"></div>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="section-sm">
+      <div class="container">
+        <div id="reviews-container"></div>
+      </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="section-sm" style="background:var(--color-bg-alt)">
+      <div class="container">
+        <h2 class="section-title" data-animate>You May Also Like</h2>
+        <div class="grid-4" id="related-products"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="site-footer"></div>
+
+  <!-- Lightbox CSS -->
+  <style>
+    .gallery-lightbox { position: fixed; inset: 0; z-index: var(--z-modal); display: flex; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
+    .gallery-lightbox--open { opacity: 1; }
+    .gallery-lightbox__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.85); }
+    .gallery-lightbox__content { position: relative; z-index: 1; max-width: 90vw; max-height: 90vh; }
+    .gallery-lightbox__content img { max-width: 90vw; max-height: 85vh; object-fit: contain; border-radius: var(--radius-lg); }
+    .gallery-lightbox__close { position: absolute; top: -44px; right: 0; background: white; border: none; border-radius: var(--radius-full); width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .gallery { display: flex; flex-direction: column; gap: var(--space-3); }
+    .gallery__main-wrapper { position: relative; aspect-ratio: 1/1; border-radius: var(--radius-xl); overflow: hidden; background: var(--color-bg-alt); }
+    .gallery__main-img { width: 100%; height: 100%; object-fit: cover; transition: opacity 0.25s ease; }
+    .gallery__arrow { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.9); border: none; border-radius: var(--radius-full); width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 2; }
+    .gallery__arrow--prev { left: var(--space-3); }
+    .gallery__arrow--next { right: var(--space-3); }
+    .gallery__thumbs { display: flex; gap: var(--space-2); overflow-x: auto; padding-bottom: 4px; }
+    .gallery__thumb { width: 70px; height: 70px; border-radius: var(--radius-md); overflow: hidden; border: 2px solid var(--color-border); cursor: pointer; flex-shrink: 0; padding: 0; background: none; }
+    .gallery__thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .gallery__thumb--active { border-color: var(--color-primary); }
+  </style>
+
+  <script src="js/data/products.js"></script>
+  <script src="js/data/categories.js"></script>
+  <script src="js/data/reviews.js"></script>
+  <script src="js/utils/sanitize.js"></script>
+  <script src="js/utils/renderStars.js"></script>
+  <script src="js/utils/filterProducts.js"></script>
+  <script src="js/utils/scrollAnimations.js"></script>
+  <script src="js/modules/CartStore.js"></script>
+  <script src="js/modules/ToastNotification.js"></script>
+  <script src="js/modules/WhatsAppWidget.js"></script>
+  <script src="js/modules/Header.js"></script>
+  <script src="js/modules/Footer.js"></script>
+  <script src="js/modules/ProductCard.js"></script>
+  <script src="js/modules/ProductGallery.js"></script>
+  <script src="js/modules/QuantitySelector.js"></script>
+  <script src="js/modules/ReviewsSection.js"></script>
+  <script src="js/pages/product.js"></script>
+</body>
+</html>
