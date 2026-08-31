@@ -3,7 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Your BreakFit cart — review items, apply discount codes, and proceed to secure checkout.">
   <title>Cart — BreakFit Premium Dry Fruits</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' rx='12' fill='%231A5C33'/%3E%3Ctext x='7' y='36' font-family='Georgia,serif' font-size='28' font-weight='700' fill='%23D4A853'%3E3%3C/text%3E%3Ctext x='26' y='36' font-family='Georgia,serif' font-size='24' font-weight='700' fill='%23fff'%3EF%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" crossorigin="anonymous">
   <link rel="stylesheet" href="css/design-tokens.css">
@@ -12,6 +16,7 @@
   <link rel="stylesheet" href="css/components/footer.css">
   <link rel="stylesheet" href="css/components/toast.css">
   <link rel="stylesheet" href="css/components/whatsapp.css">
+  <link rel="stylesheet" href="css/components/cart-drawer.css">
   <link rel="stylesheet" href="css/pages/cart.css">
 </head>
 <body>
@@ -57,9 +62,23 @@
           </div>
 
           <a href="checkout.html" class="btn btn--primary btn-lg checkout-btn" id="checkout-btn" style="width:100%;justify-content:center">
-            Proceed to Checkout <i class="ri-arrow-right-line"></i>
+            <i class="ri-shield-check-line"></i> Proceed to Checkout
           </a>
-          <a href="categories.html" class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:var(--space-3)">Continue Shopping</a>
+          <a href="categories.html" class="btn btn-ghost" style="width:100%;justify-content:center;margin-top:var(--space-3)">
+            <i class="ri-arrow-left-line"></i> Continue Shopping
+          </a>
+          <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:12px;color:var(--color-text-muted)">
+            <i class="ri-shield-check-line" style="color:#1A5C33"></i> Secure Checkout &nbsp;|&nbsp;
+            <i class="ri-whatsapp-line" style="color:#25D366"></i> Order via WhatsApp
+          </div>
+          <div class="cart-payment-logos">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5e/Visa_Inc._logo.svg/200px-Visa_Inc._logo.svg.png" alt="Visa" title="Visa">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Mastercard-logo.svg/200px-Mastercard-logo.svg.png" alt="Mastercard" title="Mastercard">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/200px-Google_Pay_Logo.svg.png" alt="Google Pay" title="Google Pay">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/PhonePe_Logo.svg/200px-PhonePe_Logo.svg.png" alt="PhonePe" title="PhonePe">
+            <span class="cart-pay-icon-pill">COD</span>
+            <span class="cart-pay-icon-pill">UPI</span>
+          </div>
         </div>
       </aside>
     </div>

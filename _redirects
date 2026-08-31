@@ -1,1 +1,6 @@
-/*    /index.html   200
+# BreakFit — Multi-page static site redirects
+# Removed the SPA catch-all (/* /index.html 200) that was
+# silently serving index.html for every URL, breaking direct links.
+
+# Redirect bare root to index (safety net)
+/  /index.html  200

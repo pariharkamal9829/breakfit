@@ -1,36 +1,43 @@
 /**
  * home.js — Home page controller for BreakFit
- * Requirements: 1.1, 8.1
+ * Upgraded: cinematic hero slides with real food photography,
+ * polished section rendering, and newsletter binding.
  */
 
 (function () {
   'use strict';
 
-  // ── Hero slides data ─────────────────────────────────────────────────
+  // ── Hero slides — real Unsplash food photography ─────────────────────────
   var HERO_SLIDES = [
     {
-      image:      'https://picsum.photos/seed/hero1/1400/700',
-      headline:   'Nature\'s Finest,<br>Delivered Fresh',
-      subtext:    'Premium dry fruits and nuts sourced from the world\'s best farms — straight to your door.',
+      image:      'https://images.unsplash.com/photo-1599940778173-e276d4acb2bb?w=1600&h=800&fit=crop&q=95&auto=format',
+      label:      'Premium Quality · Farm to Door',
+      headline:   'Nature\'s <em>Finest</em>,<br>Delivered Fresh',
+      subtext:    'Premium cashews, almonds, walnuts & more — sourced from the world\'s best farms, straight to your door across India.',
       ctaLabel:   'Shop Now',
       ctaHref:    'categories.html',
-      accentColor:'#8B5E3C'
+      badge:      '★★★★★  Trusted by 10,000+ customers',
+      accentColor:'#1A5C33'
     },
     {
-      image:      'https://picsum.photos/seed/hero2/1400/700',
-      headline:   'Power Your Day<br>the Natural Way',
-      subtext:    'From energising almonds to creamy cashews — fuel your mornings with the goodness of nature.',
+      image:      'https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=1600&h=800&fit=crop&q=95&auto=format',
+      label:      'Superfoods · 100% Natural',
+      headline:   'Power Your Day<br>the <em>Natural</em> Way',
+      subtext:    'High-protein almonds, omega-3 walnuts, energy-rich dates — the daily nutrition your body deserves, every morning.',
       ctaLabel:   'Explore Products',
       ctaHref:    'categories.html',
-      accentColor:'#D4A853'
+      badge:      '🌿  No preservatives · No additives',
+      accentColor:'#1A5C33'
     },
     {
-      image:      'https://picsum.photos/seed/hero3/1400/700',
-      headline:   'Gifting Made<br>Naturally Special',
-      subtext:    'Premium dry fruit hampers for festivals, family, and every occasion worth celebrating.',
+      image:      'https://images.unsplash.com/photo-1593358278257-2ca1b23773ac?w=1600&h=800&fit=crop&q=95&auto=format',
+      label:      'Festival & Corporate Gifting',
+      headline:   'Gifting Made<br><em>Naturally</em> Special',
+      subtext:    'Premium dry fruit hampers for Diwali, Eid, weddings, and every occasion worth celebrating with health and love.',
       ctaLabel:   'View Collections',
       ctaHref:    'categories.html',
-      accentColor:'#4A7C59'
+      badge:      '🎁  Custom gift boxes available',
+      accentColor:'#1A5C33'
     }
   ];
 
@@ -50,7 +57,7 @@
         '</div>' +
         '<div class="category-card__body">' +
           '<h3>' + cat.name + '</h3>' +
-          '<p>' + cat.productCount + ' products</p>' +
+          '<p>' + cat.productCount + ' product' + (cat.productCount !== 1 ? 's' : '') + '</p>' +
         '</div>';
       grid.appendChild(card);
     });
@@ -79,17 +86,18 @@
     });
   }
 
-  // ── Init ─────────────────────────────────────────────────────────────
+  // ── Init ─────────────────────────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', function () {
-    initHeader();
-    initFooter();
-    WhatsAppWidget.init('919876543210', 'Hello BreakFit! I\'d like to know more about your products.');
-    HeroSlider.init('hero-slider-container', HERO_SLIDES);
+    if (typeof initHeader === 'function') initHeader();
+    if (typeof initFooter === 'function') initFooter();
+    if (window.WhatsAppWidget) WhatsAppWidget.init('919323242591', 'Hello BreakFit! I\'d like to know more about your products.');
+    if (window.HeroSlider) HeroSlider.init('hero-slider-container', HERO_SLIDES);
 
     renderCategoryCards();
     renderFeaturedProducts();
     bindNewsletterForm();
-    initScrollAnimations();
+
+    if (typeof initScrollAnimations === 'function') initScrollAnimations();
   });
 
 })();

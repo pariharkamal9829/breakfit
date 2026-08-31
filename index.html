@@ -3,11 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="BreakFit — Premium dry fruits and nuts. Fresh cashews, almonds, walnuts, raisins, dates and more, delivered to your door.">
-  <title>BreakFit — Premium Dry Fruits &amp; Nuts</title>
+  <meta name="description" content="BreakFit — Premium dry fruits & nuts delivered fresh across India. Cashews, almonds, walnuts, dates, raisins and mixed nut blends from R & B Foods, Mumbai.">
+  <title>BreakFit — Premium Dry Fruits &amp; Nuts | R &amp; B Foods</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' rx='12' fill='%231A5C33'/%3E%3Ctext x='7' y='36' font-family='Georgia,serif' font-size='28' font-weight='700' fill='%23D4A853'%3E3%3C/text%3E%3Ctext x='26' y='36' font-family='Georgia,serif' font-size='24' font-weight='700' fill='%23fff'%3EF%3C/text%3E%3C/svg%3E">
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://breakfit.in/">
+  <meta property="og:title"       content="BreakFit — Premium Dry Fruits &amp; Nuts">
+  <meta property="og:description" content="Fresh cashews, almonds, walnuts, dates and more — sourced from the world's best farms, delivered across India by R &amp; B Foods, Mumbai.">
+  <meta property="og:image"       content="https://images.unsplash.com/photo-1599940778173-e276d4acb2bb?w=1200&h=630&fit=crop&q=90">
+  <meta name="twitter:card"       content="summary_large_image">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://breakfit.in/">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://images.unsplash.com">
 
   <!-- Preload first hero image -->
-  <link rel="preload" as="image" href="https://picsum.photos/seed/hero1/1400/700">
+  <link rel="preload" as="image" href="https://images.unsplash.com/photo-1599940778173-e276d4acb2bb?w=1600&h=800&fit=crop&q=95" fetchpriority="high">
 
   <!-- Remix Icons CDN -->
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet" crossorigin="anonymous">
@@ -21,7 +40,9 @@
   <link rel="stylesheet" href="css/components/hero-slider.css">
   <link rel="stylesheet" href="css/components/toast.css">
   <link rel="stylesheet" href="css/components/whatsapp.css">
+  <link rel="stylesheet" href="css/components/cart-drawer.css">
   <link rel="stylesheet" href="css/pages/home.css">
+  <link rel="stylesheet" href="css/mobile.css">
 </head>
 <body>
 
@@ -36,25 +57,66 @@
     <!-- ── Hero Slider ── -->
     <div id="hero-slider-container"></div>
 
+    <!-- ── Trust Ticker ── -->
+    <div class="trust-ticker" aria-hidden="true">
+      <div class="trust-ticker__track" id="trust-track">
+        <span class="trust-ticker__item"><i class="ri-truck-line"></i> Free Delivery on orders ₹999+</span>
+        <span class="trust-ticker__item"><i class="ri-leaf-line"></i> 100% Natural · No Preservatives</span>
+        <span class="trust-ticker__item"><i class="ri-shield-check-line"></i> FSSAI Certified · Quality Assured</span>
+        <span class="trust-ticker__item"><i class="ri-star-fill"></i> 10,000+ Happy Customers</span>
+        <span class="trust-ticker__item"><i class="ri-map-pin-line"></i> Mumbai Based · Pan India Delivery</span>
+        <span class="trust-ticker__item"><i class="ri-refresh-line"></i> 7-Day Easy Returns</span>
+        <span class="trust-ticker__item"><i class="ri-whatsapp-line"></i> WhatsApp Support Available</span>
+        <!-- duplicate for seamless loop -->
+        <span class="trust-ticker__item"><i class="ri-truck-line"></i> Free Delivery on orders ₹999+</span>
+        <span class="trust-ticker__item"><i class="ri-leaf-line"></i> 100% Natural · No Preservatives</span>
+        <span class="trust-ticker__item"><i class="ri-shield-check-line"></i> FSSAI Certified · Quality Assured</span>
+        <span class="trust-ticker__item"><i class="ri-star-fill"></i> 10,000+ Happy Customers</span>
+        <span class="trust-ticker__item"><i class="ri-map-pin-line"></i> Mumbai Based · Pan India Delivery</span>
+        <span class="trust-ticker__item"><i class="ri-refresh-line"></i> 7-Day Easy Returns</span>
+        <span class="trust-ticker__item"><i class="ri-whatsapp-line"></i> WhatsApp Support Available</span>
+      </div>
+    </div>
+
     <!-- ── Features Strip ── -->
     <section class="features-strip">
       <div class="container">
         <div class="features-grid">
           <div class="feature-item" data-animate>
-            <i class="ri-truck-line feature-icon"></i>
-            <div><strong>Free Shipping</strong><p>On orders over ₹999</p></div>
+            <div class="feature-icon-wrap">
+              <i class="ri-truck-line feature-icon"></i>
+            </div>
+            <div>
+              <strong>Free Shipping</strong>
+              <p>On orders over ₹999</p>
+            </div>
           </div>
           <div class="feature-item" data-animate data-delay="100">
-            <i class="ri-leaf-line feature-icon"></i>
-            <div><strong>100% Natural</strong><p>No preservatives</p></div>
+            <div class="feature-icon-wrap">
+              <i class="ri-leaf-line feature-icon"></i>
+            </div>
+            <div>
+              <strong>100% Natural</strong>
+              <p>No preservatives added</p>
+            </div>
           </div>
           <div class="feature-item" data-animate data-delay="200">
-            <i class="ri-shield-check-line feature-icon"></i>
-            <div><strong>Quality Assured</strong><p>Farm to door freshness</p></div>
+            <div class="feature-icon-wrap">
+              <i class="ri-shield-check-line feature-icon"></i>
+            </div>
+            <div>
+              <strong>FSSAI Certified</strong>
+              <p>Farm to door freshness</p>
+            </div>
           </div>
           <div class="feature-item" data-animate data-delay="300">
-            <i class="ri-refresh-line feature-icon"></i>
-            <div><strong>Easy Returns</strong><p>7-day return policy</p></div>
+            <div class="feature-icon-wrap">
+              <i class="ri-refresh-line feature-icon"></i>
+            </div>
+            <div>
+              <strong>Easy Returns</strong>
+              <p>7-day return policy</p>
+            </div>
           </div>
         </div>
       </div>
@@ -66,7 +128,7 @@
         <div class="section-header" data-animate>
           <span class="section-label">Browse by Category</span>
           <h2 class="section-title">Shop by Type</h2>
-          <p class="section-subtitle">From premium cashews to exotic dates — explore our full range of handpicked dry fruits.</p>
+          <p class="section-subtitle">From premium cashews to exotic Ajwa dates — explore our full range of handpicked dry fruits.</p>
         </div>
         <div class="categories-grid" id="categories-grid"></div>
       </div>
@@ -82,7 +144,10 @@
         </div>
         <div class="grid-4" id="featured-products"></div>
         <div class="text-center" style="margin-top:var(--space-12)">
-          <a href="categories.html" class="btn btn--primary btn-lg" data-animate>View All Products</a>
+          <a href="categories.html" class="btn btn--primary btn-lg" data-animate>
+            <i class="ri-store-2-line"></i>
+            View All Products
+          </a>
         </div>
       </div>
     </section>
@@ -94,55 +159,97 @@
           <div class="promo-card promo-card--primary" data-animate>
             <div class="promo-card__content">
               <span class="section-label">Limited Offer</span>
-              <h3>Get 20% Off on Premium Cashews</h3>
-              <p>Use code <strong>BREAK20</strong> at checkout. Valid for first-time buyers.</p>
+              <h3>Get 20% Off<br>Premium Cashews</h3>
+              <p>Use code <strong>BREAK20</strong> at checkout. Valid for first-time buyers only.</p>
               <a href="categories.html?category=cashews" class="btn btn--secondary">Shop Cashews</a>
             </div>
-            <div class="promo-card__img">🥜</div>
+            <div class="promo-card__img" role="img" aria-label="Cashews">🥜</div>
           </div>
           <div class="promo-card promo-card--accent" data-animate data-delay="150">
             <div class="promo-card__content">
               <span class="section-label">New Arrival</span>
               <h3>Authentic Mamra Almonds from Iran</h3>
-              <p>Sourced directly from premium Iranian farms. Limited stock available.</p>
+              <p>Sourced directly from premium Iranian farms. Prized in Ayurveda. Limited stock.</p>
               <a href="categories.html?category=almonds" class="btn btn--primary">Shop Almonds</a>
             </div>
-            <div class="promo-card__img">🌰</div>
+            <div class="promo-card__img" role="img" aria-label="Almonds">🌰</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Why Choose Us ── -->
+    <section class="section" style="background:var(--color-bg-alt)">
+      <div class="container">
+        <div class="section-header" data-animate>
+          <span class="section-label">Our Numbers</span>
+          <h2 class="section-title">Trusted by Thousands</h2>
+          <p class="section-subtitle">Premium quality, transparent sourcing, and real customer love — that's the BreakFit promise.</p>
+        </div>
+        <div class="why-us-grid">
+          <div class="why-stat" data-animate>
+            <div class="why-stat__value">10K<span>+</span></div>
+            <div class="why-stat__label">Happy Customers</div>
+          </div>
+          <div class="why-stat" data-animate data-delay="100">
+            <div class="why-stat__value">14<span>+</span></div>
+            <div class="why-stat__label">Premium Products</div>
+          </div>
+          <div class="why-stat" data-animate data-delay="200">
+            <div class="why-stat__value">100<span>%</span></div>
+            <div class="why-stat__label">Natural Ingredients</div>
+          </div>
+          <div class="why-stat" data-animate data-delay="300">
+            <div class="why-stat__value">4.8<span>★</span></div>
+            <div class="why-stat__label">Average Rating</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ── Testimonials ── -->
-    <section class="section section-testimonials" style="background:var(--color-bg-alt)">
+    <section class="section section-testimonials">
       <div class="container">
         <div class="section-header" data-animate>
           <span class="section-label">What Customers Say</span>
           <h2 class="section-title">Loved by Thousands</h2>
+          <p class="section-subtitle">Real reviews from real customers across India.</p>
         </div>
         <div class="testimonials-grid">
           <div class="testimonial-card" data-animate>
             <div class="testimonial-stars">★★★★★</div>
-            <blockquote>"The freshest cashews I've ever ordered online. You can taste the quality difference from the first bite."</blockquote>
+            <blockquote>"The freshest cashews I've ever ordered online. You can taste the quality difference from the first bite. Nothing like what you get in supermarkets."</blockquote>
             <div class="testimonial-author">
-              <img src="https://picsum.photos/seed/tuser1/48/48" alt="Priya S." loading="lazy">
-              <div><strong>Priya S.</strong><span>Mumbai</span></div>
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&h=96&fit=crop&crop=face&q=85" alt="Priya S." loading="lazy" width="48" height="48">
+              <div>
+                <strong>Priya S.</strong>
+                <span>Mumbai</span>
+                <div class="verified"><i class="ri-checkbox-circle-fill"></i> Verified Purchase</div>
+              </div>
             </div>
           </div>
           <div class="testimonial-card" data-animate data-delay="150">
             <div class="testimonial-stars">★★★★★</div>
-            <blockquote>"I've been buying my Mamra almonds from BreakFit for 6 months now. Genuinely authentic, unlike anything else online."</blockquote>
+            <blockquote>"I've been buying my Mamra almonds from BreakFit for 6 months now. Genuinely authentic — nothing else online even comes close in quality."</blockquote>
             <div class="testimonial-author">
-              <img src="https://picsum.photos/seed/tuser2/48/48" alt="Rohit J." loading="lazy">
-              <div><strong>Rohit J.</strong><span>Bangalore</span></div>
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=96&h=96&fit=crop&crop=face&q=85" alt="Rohit J." loading="lazy" width="48" height="48">
+              <div>
+                <strong>Rohit J.</strong>
+                <span>Bangalore</span>
+                <div class="verified"><i class="ri-checkbox-circle-fill"></i> Verified Purchase</div>
+              </div>
             </div>
           </div>
           <div class="testimonial-card" data-animate data-delay="300">
             <div class="testimonial-stars">★★★★★</div>
-            <blockquote>"Fast delivery, beautiful packaging, and the mixed nuts blend is absolutely perfect for our office snack corner."</blockquote>
+            <blockquote>"Fast delivery, beautiful packaging, and the Power Mix is absolutely perfect for our office snack corner. We reorder every month now."</blockquote>
             <div class="testimonial-author">
-              <img src="https://picsum.photos/seed/tuser3/48/48" alt="Anjali K." loading="lazy">
-              <div><strong>Anjali K.</strong><span>Delhi</span></div>
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&h=96&fit=crop&crop=face&q=85" alt="Anjali K." loading="lazy" width="48" height="48">
+              <div>
+                <strong>Anjali K.</strong>
+                <span>Delhi</span>
+                <div class="verified"><i class="ri-checkbox-circle-fill"></i> Verified Purchase</div>
+              </div>
             </div>
           </div>
         </div>
@@ -150,17 +257,17 @@
     </section>
 
     <!-- ── Newsletter ── -->
-    <section class="section section-newsletter">
+    <section class="section section-newsletter" style="background:var(--color-bg-alt)">
       <div class="container">
         <div class="newsletter-box" data-animate>
           <div class="newsletter-content">
             <span class="section-label">Join Our Community</span>
             <h2>Get 10% Off Your First Order</h2>
-            <p>Subscribe to our newsletter for exclusive deals, new arrivals, and healthy snacking tips.</p>
+            <p>Subscribe for exclusive deals, new arrivals, and healthy snacking tips — straight to your inbox.</p>
           </div>
           <form class="newsletter-form" id="home-newsletter-form" novalidate>
             <input type="email" placeholder="Enter your email address" aria-label="Email address" required>
-            <button type="submit" class="btn btn--primary">Get 10% Off</button>
+            <button type="submit" class="btn btn--primary btn-lg">Get 10% Off</button>
           </form>
         </div>
       </div>
@@ -193,6 +300,5 @@
 
   <!-- JS: Home page controller -->
   <script src="js/pages/home.js"></script>
-
 </body>
 </html>

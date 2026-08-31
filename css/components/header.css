@@ -1,60 +1,76 @@
 /* ============================================================
-   BreakFit — css/components/header.css
-   Shared navigation bar styles
-   Requirements: 1.7, 7.2
+   BreakFit — Header Component  (Premium Glass Edition)
    ============================================================ */
 
-/* ------------------------------------------------------------
-   1. SITE HEADER — sticky bar with backdrop blur
-   ------------------------------------------------------------ */
+/* ── 1. Site Header shell ── */
 .site-header {
   position: sticky;
   top: 0;
   z-index: var(--z-sticky);
-  background: var(--color-surface);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--color-border);
-  transition: box-shadow var(--transition-base);
+  /* Warm frosted glass */
+  background: rgba(253, 248, 243, 0.92);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(232,221,212,0.7);
+  transition:
+    box-shadow var(--transition-base),
+    background var(--transition-base),
+    border-color var(--transition-base);
 }
 
-/* Scrolled state — added via JS when window.scrollY > 0 */
 .site-header.header--scrolled {
-  box-shadow: var(--shadow-md);
+  background: rgba(253, 248, 243, 0.97);
+  box-shadow:
+    0 1px 0 rgba(232,221,212,0.8),
+    0 4px 24px rgba(26,92,51,0.08);
+  border-color: rgba(232,221,212,0.9);
 }
 
-/* Inner flex container — logo | nav | actions */
 .header-inner {
   display: flex;
   align-items: center;
-  height: var(--header-height);          /* 70px (desktop) */
+  height: var(--header-height);      /* 70px */
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--space-lg);
   gap: var(--space-lg);
 }
 
-/* ------------------------------------------------------------
-   2. LOGO — left section
-   ------------------------------------------------------------ */
+/* ── 2. Logo ── */
 .site-logo {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: 11px;
   text-decoration: none;
   flex-shrink: 0;
+  transition: opacity var(--transition-fast);
 }
 
+.site-logo:hover { opacity: 0.88; }
+
 .logo-icon {
-  width: 44px;
-  height: 44px;
-  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
-  border-radius: var(--radius-lg);
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
-  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  /* Subtle shadow beneath logo icon */
+  box-shadow: 0 2px 10px rgba(26,92,51,0.18);
+  transition: box-shadow var(--transition-base), transform var(--transition-spring);
+}
+
+.site-logo:hover .logo-icon {
+  box-shadow: 0 4px 18px rgba(26,92,51,0.28);
+  transform: rotate(-3deg) scale(1.05);
+}
+
+.logo-svg {
+  width: 46px;
+  height: 46px;
+  display: block;
 }
 
 .logo-text {
@@ -65,22 +81,24 @@
 
 .logo-name {
   font-family: var(--font-heading);
-  font-size: var(--text-xl);
+  font-size: 1.45rem;
   font-weight: 700;
-  color: var(--color-primary);
-  letter-spacing: -0.02em;
+  color: #1A5C33;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
 }
 
 .logo-tagline {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted);
-  letter-spacing: 0.08em;
+  font-size: 9px;
+  color: #B8903A;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
+  font-weight: 700;
+  white-space: nowrap;
+  margin-top: 2px;
 }
 
-/* ------------------------------------------------------------
-   3. PRIMARY NAV — centered desktop links
-   ------------------------------------------------------------ */
+/* ── 3. Primary Nav ── */
 .nav-primary {
   flex: 1;
   display: flex;
@@ -92,26 +110,23 @@
   list-style: none;
   display: flex;
   align-items: center;
-  gap: var(--space-xs);
+  gap: 2px;
   margin: 0;
   padding: 0;
 }
 
-.nav-item {
-  position: relative;
-}
+.nav-item { position: relative; }
 
-/* Each nav link */
 .nav-link {
   position: relative;
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  padding: 0.5rem 0.875rem;
-  border-radius: var(--radius-md);
+  padding: 8px 16px;
+  border-radius: 10px;
   font-size: var(--text-sm);
-  font-weight: 500;
-  color: var(--color-text-primary);
+  font-weight: 600;
+  color: var(--color-text-secondary);
   text-decoration: none;
   background: none;
   border: none;
@@ -120,45 +135,42 @@
   white-space: nowrap;
 }
 
-/* Hover state */
 .nav-link:hover {
-  color: var(--color-primary);
-  background: var(--color-bg-alt, #F5EDE3);
+  color: #1A5C33;
+  background: rgba(26,92,51,0.07);
 }
 
-/* Active page indicator — bottom border underline */
 .nav-link.active {
-  color: var(--color-primary);
+  color: #1A5C33;
+  font-weight: 700;
+  background: rgba(26,92,51,0.06);
 }
 
+/* Active indicator pill */
 .nav-link.active::after {
   content: '';
   position: absolute;
-  bottom: -2px;
-  left: 0.875rem;
-  right: 0.875rem;
-  height: 2px;
-  background: var(--color-primary);
+  bottom: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2.5px;
+  background: linear-gradient(90deg, #1A5C33, #D4A853);
   border-radius: var(--radius-full);
 }
 
-/* ------------------------------------------------------------
-   4. HEADER ACTIONS — right section (search, wishlist, cart)
-   ------------------------------------------------------------ */
+/* ── 4. Header Actions ── */
 .header-actions {
   display: flex;
   align-items: center;
-  gap: var(--space-sm);
+  gap: 6px;
   flex-shrink: 0;
 }
 
-/* Generic icon action button */
 .action-btn {
   position: relative;
-  width: 40px;
-  height: 40px;
-  min-width: 44px;     /* WCAG 2.1 AA touch target */
-  min-height: 44px;
+  width: 42px;
+  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -166,57 +178,59 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: var(--color-text-primary);
+  color: var(--color-text-secondary);
   font-size: 1.25rem;
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-spring);
   text-decoration: none;
 }
 
 .action-btn:hover {
-  background: var(--color-bg-alt, #F5EDE3);
-  color: var(--color-primary);
+  background: rgba(26,92,51,0.09);
+  color: #1A5C33;
+  transform: scale(1.1);
 }
 
-/* ------------------------------------------------------------
-   5. CART BADGE — small circle top-right of cart icon
-   ------------------------------------------------------------ */
+/* ── 5. Cart Badge ── */
 .cart-badge {
   position: absolute;
-  top: 2px;
-  right: 2px;
-  width: 18px;
+  top: 3px;
+  right: 3px;
+  min-width: 18px;
   height: 18px;
-  background: var(--color-secondary);
+  background: linear-gradient(135deg, #D4A853, #B8903A);
   color: #fff;
   border-radius: var(--radius-full);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0 4px;
   line-height: 1;
   pointer-events: none;
-  transition: transform var(--transition-spring);
+  /* White ring separates badge from button */
+  box-shadow: 0 0 0 2px rgba(253,248,243,0.95);
 }
 
-/* Bounce animation when count updates */
 .cart-badge.bump {
-  animation: badge-bump 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: badge-bump 0.42s cubic-bezier(0.34,1.56,0.64,1);
 }
 
 @keyframes badge-bump {
   0%   { transform: scale(1); }
-  50%  { transform: scale(1.5); }
+  40%  { transform: scale(1.65); }
+  70%  { transform: scale(0.88); }
   100% { transform: scale(1); }
 }
 
-/* ------------------------------------------------------------
-   6. HAMBURGER ICON — 3 bars, desktop hidden, mobile visible
-   ------------------------------------------------------------ */
+/* ── 6. Hamburger ── */
 .menu-toggle {
-  display: none;               /* hidden on desktop ≥ 768px */
-  width: 44px;
-  height: 44px;
+  display: none;
+  width: 42px;
+  height: 42px;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-md);
@@ -225,22 +239,12 @@
   cursor: pointer;
   color: var(--color-text-primary);
   flex-shrink: 0;
-  transition: background var(--transition-fast);
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
 
 .menu-toggle:hover {
-  background: var(--color-bg-alt, #F5EDE3);
-  color: var(--color-primary);
-}
-
-/* Three-bar SVG / icon inside the toggle */
-.hamburger-bar {
-  display: block;
-  width: 22px;
-  height: 2px;
-  background: currentColor;
-  border-radius: 2px;
-  transition: transform var(--transition-base), opacity var(--transition-fast);
+  background: rgba(26,92,51,0.08);
+  color: #1A5C33;
 }
 
 .hamburger-bars {
@@ -249,29 +253,26 @@
   gap: 5px;
 }
 
-/* When nav-open: morph to × */
-body.nav-open .hamburger-bar:nth-child(1) {
-  transform: translateY(7px) rotate(45deg);
+.hamburger-bar {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--transition-base), opacity var(--transition-fast), width var(--transition-base);
 }
 
-body.nav-open .hamburger-bar:nth-child(2) {
-  opacity: 0;
-  transform: scaleX(0);
-}
+/* Animated X on open */
+body.nav-open .hamburger-bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+body.nav-open .hamburger-bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+body.nav-open .hamburger-bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-body.nav-open .hamburger-bar:nth-child(3) {
-  transform: translateY(-7px) rotate(-45deg);
-}
-
-/* ------------------------------------------------------------
-   7. MOBILE NAV DRAWER — slides in from the left
-   ------------------------------------------------------------ */
-
-/* Backdrop overlay */
+/* ── 7. Mobile Drawer ── */
 .nav-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(26, 18, 8, 0.5);
+  background: rgba(5, 18, 8, 0.55);
+  backdrop-filter: blur(6px);
   z-index: calc(var(--z-fixed) - 1);
   opacity: 0;
   visibility: hidden;
@@ -283,40 +284,34 @@ body.nav-open .nav-overlay {
   visibility: visible;
 }
 
-/* Drawer panel */
 .nav-drawer {
   position: fixed;
   top: 0;
   left: 0;
-  width: min(320px, 85vw);
+  width: min(300px, 84vw);
   height: 100%;
-  background: var(--color-surface);
+  background: #fff;
   z-index: var(--z-fixed);
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-xl);
+  box-shadow: 4px 0 48px rgba(5,18,8,0.22);
   overflow-y: auto;
-  /* Slide in/out via translateX */
   transform: translateX(-100%);
-  transition: transform var(--transition-slow);
+  transition: transform 0.38s cubic-bezier(0.4,0,0.2,1);
 }
 
-/* Open state — triggered by body.nav-open */
-body.nav-open .nav-drawer {
-  transform: translateX(0);
-}
+body.nav-open .nav-drawer { transform: translateX(0); }
 
-/* Drawer header row */
 .nav-drawer__header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: var(--space-lg) var(--space-lg) var(--space-md);
+  padding: 16px 18px;
   border-bottom: 1px solid var(--color-border);
+  background: linear-gradient(135deg, rgba(26,92,51,0.04) 0%, rgba(212,168,83,0.04) 100%);
   flex-shrink: 0;
 }
 
-/* Close button inside drawer */
 .nav-drawer__close {
   width: 36px;
   height: 36px;
@@ -324,23 +319,22 @@ body.nav-open .nav-drawer {
   align-items: center;
   justify-content: center;
   border: none;
-  background: var(--color-bg-alt, #F5EDE3);
+  background: rgba(26,92,51,0.08);
   border-radius: var(--radius-full);
   cursor: pointer;
-  font-size: 1.2rem;
-  color: var(--color-text-primary);
-  transition: background var(--transition-fast), color var(--transition-fast);
+  font-size: 1.1rem;
+  color: #1A5C33;
+  transition: background var(--transition-fast), transform var(--transition-spring);
 }
 
 .nav-drawer__close:hover {
-  background: var(--color-border);
-  color: var(--color-primary);
+  background: rgba(26,92,51,0.16);
+  transform: rotate(90deg);
 }
 
-/* Drawer body / link list */
 .nav-drawer__body {
   flex: 1;
-  padding: var(--space-md);
+  padding: 10px;
   overflow-y: auto;
 }
 
@@ -350,100 +344,101 @@ body.nav-open .nav-drawer {
   padding: 0;
 }
 
-/* Drawer nav links */
 .nav-drawer__link {
   display: flex;
   align-items: center;
-  gap: var(--space-md);
-  padding: 0.875rem var(--space-md);
+  gap: 14px;
+  padding: 13px 16px;
   border-radius: var(--radius-lg);
   font-weight: 600;
-  font-size: var(--text-base);
-  color: var(--color-text-primary);
+  font-size: 0.975rem;
+  color: var(--color-text-secondary);
   text-decoration: none;
-  min-height: 44px;    /* touch target */
-  transition: background var(--transition-fast), color var(--transition-fast);
+  min-height: 50px;
+  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
 }
 
-.nav-drawer__link:hover,
+.nav-drawer__link:hover {
+  background: rgba(26,92,51,0.07);
+  color: #1A5C33;
+  transform: translateX(4px);
+}
+
 .nav-drawer__link.active {
-  background: var(--color-bg-alt, #F5EDE3);
-  color: var(--color-primary);
+  background: linear-gradient(135deg, rgba(26,92,51,0.09), rgba(212,168,83,0.07));
+  color: #1A5C33;
 }
 
 .nav-drawer__link i {
-  font-size: 1.1rem;
-  width: 24px;
+  font-size: 1.2rem;
+  width: 26px;
   text-align: center;
-  color: var(--color-primary);
+  color: #1A5C33;
   flex-shrink: 0;
 }
 
-/* Divider between link groups */
 .nav-drawer__divider {
   height: 1px;
   background: var(--color-border);
-  margin: var(--space-sm) 0;
+  margin: 6px 0;
 }
 
-/* Drawer footer */
+.drawer-cart-count {
+  margin-left: auto;
+  background: linear-gradient(135deg, #D4A853, #B8903A);
+  color: #fff;
+  border-radius: var(--radius-full);
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 9px;
+  display: inline-flex;
+  align-items: center;
+}
+
 .nav-drawer__footer {
-  padding: var(--space-lg);
+  padding: 14px 18px;
   border-top: 1px solid var(--color-border);
-  font-size: var(--text-sm);
+  flex-shrink: 0;
+  background: linear-gradient(135deg, rgba(26,92,51,0.03), rgba(212,168,83,0.03));
+}
+
+.drawer-brand {
+  font-size: 12px;
   color: var(--color-text-muted);
   text-align: center;
-  flex-shrink: 0;
+  margin-bottom: 5px;
 }
 
-/* Prevent body scroll when drawer is open */
-body.nav-open {
-  overflow: hidden;
+.drawer-brand strong { color: #1A5C33; }
+
+.drawer-contact {
+  font-size: 11px;
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.6;
 }
 
-/* ------------------------------------------------------------
-   8. RESPONSIVE BREAKPOINTS
-   ------------------------------------------------------------ */
+body.nav-open { overflow: hidden; }
 
-/* Tablet / below 1024px — hide desktop nav, show hamburger */
+/* ── 8. Responsive ── */
 @media (max-width: 1024px) {
-  .nav-primary {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  .header-inner {
-    height: var(--header-height-mobile);   /* 60px */
-  }
+  .nav-primary { display: none; }
+  .menu-toggle { display: flex; }
+  .header-inner { height: var(--header-height-mobile); }
 }
 
-/* Mobile — below 768px (core mobile breakpoint per Req 7.2) */
 @media (max-width: 768px) {
-  .nav-primary {
-    display: none;
-  }
-
-  .menu-toggle {
-    display: flex;
-  }
-
-  .header-inner {
-    height: var(--header-height-mobile);
-    padding: 0 var(--space-md);
-  }
-
-  /* Hide extra action buttons; keep cart + search */
-  .header-actions .action-btn:not(.action-btn--cart):not(.action-btn--search) {
-    display: none;
-  }
+  .header-inner { padding: 0 16px; gap: 8px; }
+  .logo-icon { width: 40px; height: 40px; }
+  .logo-svg  { width: 40px; height: 40px; }
+  .logo-name { font-size: 1.25rem; }
+  .logo-tagline { font-size: 8px; }
 }
 
-/* Narrow phones — below 480px */
 @media (max-width: 480px) {
-  .logo-tagline {
-    display: none;
-  }
+  .header-inner { padding: 0 12px; }
+  .logo-tagline { display: none; }
+  .logo-name { font-size: 1.2rem; }
+  .logo-icon { width: 38px; height: 38px; }
+  .logo-svg  { width: 38px; height: 38px; }
 }

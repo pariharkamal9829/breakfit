@@ -1,7 +1,9 @@
 [build]
   publish = "."
 
+# Multi-page site — no SPA catch-all redirect.
+# Only handle genuine 404s gracefully.
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "/404"
+  to   = "/index.html"
+  status = 404
