@@ -141,7 +141,7 @@
   document.addEventListener('DOMContentLoaded', function () {
     initHeader();
     initFooter();
-    WhatsAppWidget.init('919876543210', 'Hello! I have a question about my order.');
+    WhatsAppWidget.init('919323242591', 'Hello! I have a question about my order.');
 
     _renderCartItems();
     _bindPromoCode();
