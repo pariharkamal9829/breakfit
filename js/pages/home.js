@@ -19,7 +19,7 @@
       accentColor:'#1A5C33'
     },
     {
-      image:      'https://images.unsplash.com/photo-1615484477778-ca3b77940c25?w=1600&h=800&fit=crop&q=95&auto=format',
+      image:      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnrcNf6pZPaJ42fEc0qmVzzAfNHWBtiM0hrKitlNZquQ&s=10',
       label:      'High Protein · Low Calorie Snack',
       headline:   'Power Snacking,<br><em>Naturally</em> Done',
       subtext:    'Fresh Edamame Beans — complete plant protein, all 9 essential amino acids, and only 121 cal per 100g. Your perfect fitness snack.',
