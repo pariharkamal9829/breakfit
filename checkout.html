@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Checkout securely at BreakFit — Premium dry fruits delivered across India by R &amp; B Foods.">
   <title>Checkout — BreakFit Premium Dry Fruits</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Crect width='52' height='52' rx='12' fill='%231A5C33'/%3E%3Ctext x='7' y='36' font-family='Georgia,serif' font-size='28' font-weight='700' fill='%23D4A853'%3E3%3C/text%3E%3Ctext x='26' y='36' font-family='Georgia,serif' font-size='24' font-weight='700' fill='%23fff'%3EF%3C/text%3E%3C/svg%3E">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23F7F2E8'/%3E%3Ctext x='4' y='46' font-family='Georgia,serif' font-size='46' font-weight='900' fill='%231A5C33'%3EB%3C/text%3E%3Ctext x='34' y='46' font-family='Georgia,serif' font-size='34' font-weight='700' fill='%23C9973A'%3EF%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -118,24 +118,59 @@
           <!-- Step 2: Payment -->
           <div class="checkout-step" id="checkout-step-2" style="display:none">
             <h2>Payment Method</h2>
+
             <div class="payment-options" id="payment-options">
+
+              <!-- UPI / QR -->
               <label class="payment-option">
-                <input type="radio" name="payment" value="upi"> 
-                <div class="payment-option__body"><i class="ri-qr-code-line"></i><span>UPI / QR Code</span></div>
+                <input type="radio" name="payment" value="upi">
+                <div class="payment-option__body">
+                  <div class="payment-option__left">
+                    <i class="ri-qr-code-line"></i>
+                    <div>
+                      <span class="payment-option__title">UPI / QR Code</span>
+                      <span class="payment-option__sub">Pay instantly using any UPI app</span>
+                    </div>
+                  </div>
+                  <!-- UPI app logos -->
+                  <div class="upi-app-logos">
+                    <span class="upi-badge upi-badge--gpay">G Pay</span>
+                    <span class="upi-badge upi-badge--phonepe">PhonePe</span>
+                    <span class="upi-badge upi-badge--paytm">Paytm</span>
+                    <span class="upi-badge upi-badge--bhim">BHIM</span>
+                  </div>
+                </div>
               </label>
-              <label class="payment-option">
-                <input type="radio" name="payment" value="card">
-                <div class="payment-option__body"><i class="ri-bank-card-line"></i><span>Credit / Debit Card</span></div>
-              </label>
-              <label class="payment-option">
-                <input type="radio" name="payment" value="netbanking">
-                <div class="payment-option__body"><i class="ri-building-line"></i><span>Net Banking</span></div>
-              </label>
+
+              <!-- UPI ID reveal box (shows when UPI is selected) -->
+              <div class="upi-id-box" id="upi-id-box" style="display:none">
+                <div class="upi-id-label"><i class="ri-bank-line"></i> UPI ID to pay:</div>
+                <div class="upi-id-value" id="upi-id-copy">
+                  <span>parihar09@slc</span>
+                  <button type="button" class="upi-copy-btn" onclick="navigator.clipboard&&navigator.clipboard.writeText('parihar09@slc').then(function(){this.textContent='Copied ✓'}.bind(this))">
+                    <i class="ri-file-copy-line"></i> Copy
+                  </button>
+                </div>
+                <p class="upi-id-note"><i class="ri-information-line"></i> After placing order, pay this UPI ID and send screenshot on WhatsApp.</p>
+              </div>
+
+              <!-- COD -->
               <label class="payment-option">
                 <input type="radio" name="payment" value="cod">
-                <div class="payment-option__body"><i class="ri-money-rupee-circle-line"></i><span>Cash on Delivery</span></div>
+                <div class="payment-option__body">
+                  <div class="payment-option__left">
+                    <i class="ri-money-rupee-circle-line"></i>
+                    <div>
+                      <span class="payment-option__title">Cash on Delivery</span>
+                      <span class="payment-option__sub">Pay when your order arrives</span>
+                    </div>
+                  </div>
+                  <span class="cod-badge">COD</span>
+                </div>
               </label>
+
             </div>
+
             <p class="form-error" id="err-payment" style="display:none">Please select a payment method.</p>
             <div class="step2-btns">
               <button type="button" class="btn btn-outline" id="step2-back-btn"><i class="ri-arrow-left-line"></i> Back</button>
@@ -155,18 +190,17 @@
             </div>
           </div>
 
-          <!-- Order Confirmed -->
+          <!-- ── Order Confirmed ── -->
           <div class="order-confirmed" id="order-confirmed" style="display:none">
             <div class="confirmed-icon"><i class="ri-checkbox-circle-fill"></i></div>
             <h2>Order Placed Successfully!</h2>
-            <p>Thank you! Your order has been received.</p>
-            <p>We'll call or WhatsApp you within <strong>30 minutes</strong> to confirm.</p>
-            <p class="order-id-display">Order ID: <strong id="confirmed-order-id"></strong></p>
-            <div id="confirmed-summary"></div>
-            <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:var(--space-8)">
-              <a href="index.html" class="btn btn--primary btn-lg">Continue Shopping</a>
-              <a href="categories.html" class="btn btn--secondary btn-lg">Browse More</a>
+            <p>Thank you! Your complete order details are ready on WhatsApp.</p>
+            <p>Send the message below so we can <strong>confirm &amp; ship your order</strong>.</p>
+            <div class="order-id-display">
+              <i class="ri-hashtag"></i> Order ID: <span id="confirmed-order-id"></span>
             </div>
+            <!-- JS fills this with WhatsApp CTA + order details card -->
+            <div id="confirmed-summary"></div>
           </div>
 
         </div>

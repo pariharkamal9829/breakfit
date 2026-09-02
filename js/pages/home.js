@@ -1,102 +1,137 @@
 /**
- * home.js — Home page controller for BreakFit
- * Upgraded: cinematic hero slides with real food photography,
- * polished section rendering, and newsletter binding.
+ * home.js — BreakFit Home page controller
+ * Products: Muesli & Edamame
+ * Mobile: testimonials swipe slider
  */
 
 (function () {
   'use strict';
 
-  // ── Hero slides — real Unsplash food photography ─────────────────────────
   var HERO_SLIDES = [
     {
-      image:      'https://images.unsplash.com/photo-1599940778173-e276d4acb2bb?w=1600&h=800&fit=crop&q=95&auto=format',
-      label:      'Premium Quality · Farm to Door',
-      headline:   'Nature\'s <em>Finest</em>,<br>Delivered Fresh',
-      subtext:    'Premium cashews, almonds, walnuts & more — sourced from the world\'s best farms, straight to your door across India.',
-      ctaLabel:   'Shop Now',
-      ctaHref:    'categories.html',
-      badge:      '★★★★★  Trusted by 10,000+ customers',
+      image:      'https://images.unsplash.com/photo-1495214783159-3503fd1b572d?w=1600&h=800&fit=crop&q=95&auto=format',
+      label:      'Wholesome Breakfast · 100% Natural',
+      headline:   'Start Your Day<br>the <em>Better Way</em>',
+      subtext:    'Oats, seeds, nuts & dried fruits — our Breakfast Muesli is fresh, natural, and zero added sugar. Fuel every morning right.',
+      ctaLabel:   'Shop Muesli',
+      ctaHref:    'categories.html?category=muesli',
+      badge:      '🥣  No added sugar · High fibre',
       accentColor:'#1A5C33'
     },
     {
-      image:      'https://images.unsplash.com/photo-1508061253366-f7da158b6d46?w=1600&h=800&fit=crop&q=95&auto=format',
-      label:      'Superfoods · 100% Natural',
-      headline:   'Power Your Day<br>the <em>Natural</em> Way',
-      subtext:    'High-protein almonds, omega-3 walnuts, energy-rich dates — the daily nutrition your body deserves, every morning.',
-      ctaLabel:   'Explore Products',
-      ctaHref:    'categories.html',
-      badge:      '🌿  No preservatives · No additives',
-      accentColor:'#1A5C33'
-    },
-    {
-      image:      'https://images.unsplash.com/photo-1593358278257-2ca1b23773ac?w=1600&h=800&fit=crop&q=95&auto=format',
-      label:      'Festival & Corporate Gifting',
-      headline:   'Gifting Made<br><em>Naturally</em> Special',
-      subtext:    'Premium dry fruit hampers for Diwali, Eid, weddings, and every occasion worth celebrating with health and love.',
-      ctaLabel:   'View Collections',
-      ctaHref:    'categories.html',
-      badge:      '🎁  Custom gift boxes available',
+      image:      'https://images.unsplash.com/photo-1615484477778-ca3b77940c25?w=1600&h=800&fit=crop&q=95&auto=format',
+      label:      'High Protein · Low Calorie Snack',
+      headline:   'Power Snacking,<br><em>Naturally</em> Done',
+      subtext:    'Fresh Edamame Beans — complete plant protein, all 9 essential amino acids, and only 121 cal per 100g. Your perfect fitness snack.',
+      ctaLabel:   'Shop Edamame',
+      ctaHref:    'categories.html?category=edamame',
+      badge:      '💪  11g protein · 100% plant-based',
       accentColor:'#1A5C33'
     }
   ];
 
-  function renderCategoryCards() {
-    var grid = document.getElementById('categories-grid');
-    if (!grid || !window.CATEGORIES) return;
-
-    CATEGORIES.filter(function (c) { return c.slug !== 'all'; }).forEach(function (cat, i) {
-      var card = document.createElement('a');
-      card.href = 'categories.html?category=' + cat.slug;
-      card.className = 'category-card';
-      card.setAttribute('data-animate', '');
-      card.setAttribute('data-delay', String(i * 80));
-      card.innerHTML =
-        '<div class="category-card__img">' +
-          '<img src="' + cat.image + '" alt="' + cat.name + '" loading="lazy">' +
-        '</div>' +
-        '<div class="category-card__body">' +
-          '<h3>' + cat.name + '</h3>' +
-          '<p>' + cat.productCount + ' product' + (cat.productCount !== 1 ? 's' : '') + '</p>' +
-        '</div>';
-      grid.appendChild(card);
-    });
-  }
-
+  /* ── Render featured products in a 2-col grid ── */
   function renderFeaturedProducts() {
     var grid = document.getElementById('featured-products');
     if (!grid || !window.PRODUCTS || !window.ProductCard) return;
 
-    var featured = PRODUCTS.filter(function (p) { return p.featured; }).slice(0, 8);
-    featured.forEach(function (product) {
+    PRODUCTS.filter(function (p) { return p.featured; }).forEach(function (product) {
       ProductCard.render(product, grid);
     });
   }
 
+  /* ── Newsletter ── */
   function bindNewsletterForm() {
     var form = document.getElementById('home-newsletter-form');
     if (!form) return;
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var input = form.querySelector('input[type="email"]');
-      if (window.ToastNotification) {
-        ToastNotification.show({ message: 'Welcome! Your 10% discount code is BREAK10 🎉', type: 'success', duration: 5000 });
-      }
+      if (window.ToastNotification)
+        ToastNotification.show({ message: 'Welcome! Your 10% discount code is BREAK10 \uD83C\uDF89', type: 'success', duration: 5000 });
       if (input) input.value = '';
     });
   }
 
-  // ── Init ─────────────────────────────────────────────────────────────────
+  /* ────────────────────────────────────────────────────────────
+     TESTIMONIALS SLIDER  (swipe on mobile, static grid on desktop)
+  ──────────────────────────────────────────────────────────── */
+  function initTestimonialsSlider() {
+    var slider  = document.getElementById('testimonials-slider');
+    var track   = document.getElementById('testimonials-track');
+    var dotsEl  = document.getElementById('testimonials-dots');
+    if (!slider || !track) return;
+
+    var cards   = track.querySelectorAll('.testimonial-card');
+    var dots    = dotsEl ? dotsEl.querySelectorAll('.t-dot') : [];
+    var total   = cards.length;
+    var current = 0;
+    var touchStartX = 0;
+    var isDragging  = false;
+    var dragDeltaX  = 0;
+
+    function isMobile() { return window.innerWidth <= 768; }
+
+    function goTo(idx) {
+      if (!isMobile()) return;
+      current = (idx + total) % total;
+      track.style.transform = 'translateX(-' + (current * 100) + '%)';
+      dots.forEach(function (d, i) {
+        d.classList.toggle('t-dot--active', i === current);
+      });
+    }
+
+    /* Dot clicks */
+    dots.forEach(function (dot) {
+      dot.addEventListener('click', function () { goTo(parseInt(dot.dataset.idx)); });
+    });
+
+    /* Touch swipe */
+    track.addEventListener('touchstart', function (e) {
+      if (!isMobile()) return;
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    track.addEventListener('touchend', function (e) {
+      if (!isMobile()) return;
+      var delta = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(delta) > 40) { goTo(delta < 0 ? current + 1 : current - 1); }
+    }, { passive: true });
+
+    /* Mouse drag (desktop preview fallback) */
+    track.addEventListener('mousedown', function (e) {
+      if (!isMobile()) return;
+      isDragging = true; dragDeltaX = 0; touchStartX = e.clientX;
+    });
+    window.addEventListener('mousemove', function (e) {
+      if (!isDragging) return;
+      dragDeltaX = e.clientX - touchStartX;
+    });
+    window.addEventListener('mouseup', function () {
+      if (!isDragging) return;
+      isDragging = false;
+      if (Math.abs(dragDeltaX) > 40) goTo(dragDeltaX < 0 ? current + 1 : current - 1);
+    });
+
+    /* Reset on resize to desktop */
+    window.addEventListener('resize', function () {
+      if (!isMobile()) {
+        track.style.transform = '';
+        current = 0;
+      }
+    }, { passive: true });
+  }
+
+  /* ── Init ── */
   document.addEventListener('DOMContentLoaded', function () {
     if (typeof initHeader === 'function') initHeader();
     if (typeof initFooter === 'function') initFooter();
-    if (window.WhatsAppWidget) WhatsAppWidget.init('919323242591', 'Hello BreakFit! I\'d like to know more about your products.');
-    if (window.HeroSlider) HeroSlider.init('hero-slider-container', HERO_SLIDES);
+    if (window.WhatsAppWidget) WhatsAppWidget.init('919887494512', 'Hello BreakFit! I\'d like to know more about your products.');
+    if (window.HeroSlider)    HeroSlider.init('hero-slider-container', HERO_SLIDES);
 
-    renderCategoryCards();
     renderFeaturedProducts();
     bindNewsletterForm();
-
+    initTestimonialsSlider();
     if (typeof initScrollAnimations === 'function') initScrollAnimations();
   });
 

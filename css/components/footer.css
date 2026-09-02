@@ -402,3 +402,84 @@
   .footer-payment-logos { gap: 6px; }
   .footer-social { flex-wrap: wrap; }
 }
+
+/* ============================================================
+   Footer Accordion — mobile collapsible columns (≤600px)
+   ============================================================ */
+
+/* Toggle button — hidden on desktop, visible on mobile */
+.footer-col__toggle {
+  display: none; /* desktop: hidden, column header is plain h4 */
+}
+
+/* Column body always visible on desktop */
+.footer-col__body { display: block; }
+
+@media (max-width: 600px) {
+
+  /* Each accordion column */
+  .footer-col {
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    padding-bottom: 0;
+  }
+
+  /* Show toggle button, hide the static h4 */
+  .footer-col__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #D4A853;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 16px 0;
+    text-align: left;
+    gap: var(--space-3);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .footer-col__toggle span { flex: 1; }
+
+  .footer-col__arrow {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.5);
+    flex-shrink: 0;
+    transition: transform 0.28s ease, color 0.18s ease;
+  }
+
+  .footer-col__toggle[aria-expanded="true"] .footer-col__arrow {
+    transform: rotate(45deg);
+    color: #D4A853;
+  }
+
+  /* Body: collapsed by default — JS animates max-height */
+  .footer-col__body {
+    overflow: hidden;
+    /* smooth transition driven by JS inline max-height */
+    transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1),
+                opacity    0.28s ease;
+    opacity: 1;
+  }
+
+  .footer-col__body[hidden] {
+    /* [hidden] sets display:none — we override to keep transition */
+    display: block !important;
+    max-height: 0 !important;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* Give body contents some breathing room */
+  .footer-col__body > *:last-child { margin-bottom: var(--space-5); }
+
+  /* Newsletter column full-width on mobile */
+  .footer-col--newsletter { border-bottom: none; }
+
+  /* Static h4 inside body — hide it since toggle button is the heading now */
+  .footer-col__body h4 { display: none; }
+}
